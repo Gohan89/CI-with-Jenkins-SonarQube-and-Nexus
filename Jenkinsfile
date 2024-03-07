@@ -33,7 +33,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             environment {
-                scannerHome = tool 'sonar4.7'
+                scannerHome = tool 'sonar'
             }
             steps {
                 withSonarQubeEnv('sonar') {
@@ -70,10 +70,10 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: '172.31.85.97:8081',
+                    nexusUrl: '172.31.91.230:8081',
                     groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-                    repository: 'vprofile-repo',
+                    repository: 'Vprofile-Repo',
                     credentialsId: 'nexuslogin',
                     artifacts: [
                         [artifactId: 'Vprofile-App',
